@@ -332,7 +332,7 @@ footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
 }
 
 
-
+/* estilos del modal */
 .modal {
     display: none;
     position: fixed;
