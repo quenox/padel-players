@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club de Padel Amigos</title>
     <link rel="stylesheet" href="style.css">
-    </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
 <body>
     <header>
-        <h1>Club de Padel - Perfiles de Jugadores</h1>
+        <div class="header-content">
+            <h1>Club de Padel - Perfiles de Jugadores</h1>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link">Jugadores</a></li>
+                    <li><a href="#" class="nav-link">Galería</a></li>
+                    <li><a href="#" class="nav-link">Otro</a></li>
+                </ul>
+                <button class="nav-toggle" aria-label="Abrir menú de navegación">
+                    <i class="fas fa-bars"></i>
+                    </button>
+            </nav>
+        </div>
     </header>
 
     <main class="container">
@@ -43,7 +56,7 @@
                             <img id="paddle-photo" src="" alt="Foto de la pala" class="paddle-photo">
                         </div>
                         <div class="paddle-item special-paddle">
-                             <h4>Pala Especial</h4>
+                            <h4>Pala Especial</h4>
                             <img id="special-paddle-photo" src="" alt="Foto de la pala especial" class="paddle-photo">
                         </div>
                     </div>
@@ -51,9 +64,9 @@
             </div>
         </section>
 
-         <section id="welcome-message" class="profile-container">
-             <p>Selecciona un jugador de la lista para ver su perfil.</p>
-         </section>
+        <section id="welcome-message" class="profile-container">
+            <p>Selecciona un jugador de la lista para ver su perfil.</p>
+        </section>
 
     </main>
 
@@ -63,11 +76,10 @@
 
     <script src="script.js"></script>
 
-    <!-- Modal para mostrar la imagen en grande -->
     <div id="image-modal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="modal-img">
     </div>
 
-    </body>
+</body>
 </html>
