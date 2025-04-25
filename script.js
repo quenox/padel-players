@@ -150,10 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // El navegador ve que opacity y transform deben cambiar a sus valores finales (1 y 0)
         // y, como hay una transición definida, la anima suavemente.
         playerProfileElement.classList.add('visible');
-
-        // Opcional: Si usaras AOS para otros elementos *dentro* del perfil
-        // que se cargan dinámicamente, aquí podrías refrescarlo.
-        // AOS.refresh(); // Descomentar si es necesario
     }
 
     // --- 4. Resaltar jugador seleccionado en la lista ---
