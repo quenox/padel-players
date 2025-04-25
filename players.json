@@ -23,11 +23,11 @@
   {
     "id": 2,
     "name": "Ana 'La Muralla' Gómez",
-    "photo": "images/ana_gomez.jpg",
+    "photo": "images/unknown_player.jpg",
     "category": "Segunda",
     "paddle": {
       "name": "Nox AT10 Luxury Genius Arena",
-      "photo": "images/nox_at10.jpg"
+      "photo": "images/unknown_paddle.jpg"
     },
     "specialPaddle": {
       "photo": "images/ana_special_pala.png"
@@ -44,10 +44,10 @@
   {
     "id": 3,
     "name": "Javier 'Relámpago' Solís",
-    "photo": "images/javier_solis.jpg",
+    "photo": "images/unknown_player.jpg",
     "category": "Sexta",
     "paddle": {
-      "photo": "images/pala_generica.jpg"
+      "photo": "images/unknown_paddle.jpg"
     },
     "specialPaddle": {
       "photo": "images/javier_special_pala.png"
@@ -62,7 +62,7 @@
   {
     "id": 4,
     "name": "Keno Liebre",
-    "photo": "images/unknown_player.png",
+    "photo": "images/unknown_player.jpg",
     "category": "Otro",
     "paddle": {
        "name": "Desconocida",
