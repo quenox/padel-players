@@ -1,0 +1,332 @@
+/* --- Reset Básico y Fuentes --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6; /* Fondo suave */
+    color: #333;
+}
+
+/* --- Contenedor Principal y Layout --- */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
+    gap: 20px; /* Espacio entre lista y perfil */
+}
+
+/* --- Header y Footer --- */
+header, footer {
+    background-color: #0a4f6e; /* Azul oscuro padel */
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    margin-bottom: 20px;
+}
+header h1 { font-size: 2em; }
+footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
+
+
+/* --- Lista de Jugadores --- */
+.player-list-container {
+    flex: 0 0 250px; /* Ancho fijo para la lista */
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: fit-content; /* Ajustar altura al contenido */
+}
+
+.player-list-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #0a4f6e;
+}
+
+#player-list {
+    list-style: none;
+}
+
+#player-list li {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid #eee;
+    font-weight: 500;
+}
+
+#player-list li:hover {
+    background-color: #e0f7fa; /* Celeste suave al pasar el ratón */
+    transform: translateX(5px);
+}
+
+#player-list li.active {
+    background-color: #00bcd4; /* Cian para el seleccionado */
+    color: white;
+    font-weight: bold;
+    border-color: #008ba3;
+}
+
+#player-list li.loading {
+    font-style: italic;
+    color: #888;
+    cursor: default;
+}
+#player-list li.loading:hover {
+    background-color: transparent;
+    transform: none;
+}
+
+/* --- Contenedor del Perfil --- */
+.profile-container {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    opacity: 0; /* Inicialmente oculto para transición */
+    transform: translateY(20px); /* Posición inicial para animación */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    overflow: hidden; /* Para contener elementos internos */
+}
+
+.profile-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+    display: block !important; /* Asegura que sea visible */
+}
+
+#welcome-message {
+    padding: 40px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    opacity: 1; /* El mensaje de bienvenida es visible por defecto */
+    transform: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+/* --- Tarjeta de Perfil Interna --- */
+.profile-card {
+    padding: 25px;
+}
+
+/* --- Cabecera del Perfil --- */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Foto redonda */
+    object-fit: cover; /* Asegura que la imagen cubra bien */
+    border: 3px solid #ddd;
+    transition: transform 0.3s ease;
+}
+.profile-photo:hover {
+    transform: scale(1.1);
+}
+
+#profile-name {
+    margin-bottom: 5px;
+    font-size: 1.8em;
+    color: #0a4f6e;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- Secciones del Perfil --- */
+.profile-section {
+    margin-bottom: 30px;
+}
+
+.profile-section h3 {
+    margin-bottom: 15px;
+    color: #00796b; /* Verde azulado */
+    border-bottom: 2px solid #b2dfdb; /* Línea suave debajo del título */
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+/* --- Sección de Habilidades --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Columnas adaptables */
+    gap: 15px;
+}
+
+.skill-item {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+.skill-item:hover {
+   background-color: #e0e0e0;
+   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.skill-name {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.skill-level {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #0a4f6e;
+}
+
+/* --- Sección de Equipamiento (Palas) --- */
+.paddle-section h3 { color: #c2185b; border-bottom-color: #f8bbd0; } /* Rosa oscuro */
+
+.paddle-info {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around; /* Centra los elementos si hay espacio */
+    flex-wrap: wrap; /* Permite que se apilen en pantallas pequeñas */
+}
+
+.paddle-item {
+    text-align: center;
+    flex-basis: 45%; /* Aproximadamente mitad del espacio */
+    min-width: 150px; /* Ancho mínimo */
+    padding: 15px;
+    background-color: #fff9c4; /* Amarillo pálido */
+    border-radius: 8px;
+    border: 1px solid #fff59d;
+}
+.paddle-item.special-paddle {
+    background-color: #e1f5fe; /* Azul claro para la especial */
+    border-color: #b3e5fc;
+}
+
+
+.paddle-item h4 {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 1em;
+    min-height: 2.4em; /* Espacio para nombres largos o vacíos */
+}
+
+.paddle-photo {
+    max-width: 120px; /* Tamaño máximo para las fotos de pala */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.paddle-photo:hover {
+   transform: scale(1.05);
+}
+
+
+/* --- Estilos por Categoría (Aquí la magia visual!) --- */
+/* Básico */
+.category-badge { background-color: #777; } /* Default gris */
+.profile-card { border-top: 5px solid #777; }
+
+/* Sexta */
+.profile-card.category-sexta { border-top-color: #ff9800; } /* Naranja */
+.category-badge.category-sexta { background-color: #ff9800; }
+
+/* Quinta */
+.profile-card.category-quinta { border-top-color: #ff5722; } /* Naranja profundo */
+.category-badge.category-quinta { background-color: #ff5722; }
+
+/* Cuarta */
+.profile-card.category-cuarta { border-top-color: #8bc34a; } /* Verde claro */
+.category-badge.category-cuarta { background-color: #8bc34a; }
+
+/* Tercera */
+.profile-card.category-tercera { border-top-color: #2196f3; } /* Azul */
+.category-badge.category-tercera { background-color: #2196f3; }
+/* Podrías añadir sombras más pronunciadas para categorías más altas */
+.profile-card.category-tercera { box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3); }
+
+/* Segunda */
+.profile-card.category-segunda { border-top-color: #9c27b0; } /* Púrpura */
+.category-badge.category-segunda { background-color: #9c27b0; }
+.profile-card.category-segunda {
+    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.35);
+    /* background: linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%); /* Fondo degradado sutil */
+}
+
+/* Primera */
+.profile-card.category-primera { border-top: 7px solid #f44336; } /* Rojo */
+.category-badge.category-primera { background-color: #f44336; }
+.profile-card.category-primera {
+    box-shadow: 0 10px 30px rgba(244, 67, 54, 0.4);
+    /* background: linear-gradient(135deg, #ffebee 0%, #ffffff 100%); /* Otro degradado */
+    /* Añadir quizás un borde sutil adicional o animación */
+    /* animation: pulse-border 2s infinite; */
+}
+
+/* Otro / Desconocido */
+.profile-card.category-otro,
+.profile-card.category-desconocido { border-top-color: #607d8b; } /* Gris azulado */
+.category-badge.category-otro,
+.category-badge.category-desconocido { background-color: #607d8b; }
+
+/* Animación Opcional para Primera Categoría */
+/* @keyframes pulse-border {
+  0% { border-color: #f44336; }
+  50% { border-color: #ffcdd2; }
+  100% { border-color: #f44336; }
+} */
+
+
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Apila lista y perfil */
+    }
+    .player-list-container {
+        flex: 0 0 auto; /* Quita el ancho fijo */
+        width: 100%; /* Ocupa todo el ancho */
+        margin-bottom: 20px;
+    }
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+     .paddle-info {
+        flex-direction: column; /* Apila las palas */
+        align-items: center;
+    }
+    .paddle-item {
+        flex-basis: 80%; /* Más ancho en pantallas pequeñas */
+        width: 80%;
+    }
+}
