@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    AOS.init();
-
     const navToggle = document.querySelector('.nav-toggle');
     const navList = document.querySelector('.nav-list');
 
