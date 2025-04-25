@@ -12,7 +12,185 @@ body {
     color: #333;
 }
 
-/* --- Contenedor Principal y Layout --- */
+/* --- Header con el Menú --- */
+header {
+    background-color: #0a4f6e; /* Azul oscuro padel */
+    color: #fff;
+    padding: 1em; /* Padding general del header */
+    margin-bottom: 20px;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; /* Flexbox para alinear título y nav */
+    justify-content: space-between; /* Espacio entre título y nav */
+    align-items: center; /* Centrar verticalmente */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0; /* Remover margin por defecto */
+    padding: 0 10px; /* Añadir un poco de padding horizontal */
+}
+
+/* --- Estilos del Menú de Navegación --- */
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex; /* Flexbox para alinear los elementos del menú en línea */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    margin-left: 20px; /* Espacio entre elementos del menú */
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+    border-bottom: 2px solid transparent; /* Borde inferior transparente por defecto */
+}
+
+.nav-link:hover {
+    color: #00bcd4; /* Cian al pasar el ratón */
+    border-bottom-color: #00bcd4; /* Resaltar con borde inferior */
+}
+
+/* --- Botón del Menú Hamburguesa (oculto por defecto en escritorio) --- */
+.nav-toggle {
+    display: none; /* Oculto en escritorio */
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8em;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+/* Estilo simple para el icono de hamburguesa si no usas Font Awesome */
+/*
+.hamburger-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease, top 0.3s ease;
+}
+.hamburger-icon::before { top: -8px; }
+.hamburger-icon::after { top: 8px; }
+*/
+
+
+/* --- Media Query para Responsividad (Pantallas pequeñas) --- */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column; /* Apila el título y el nav */
+        align-items: flex-start; /* Alinea los elementos a la izquierda */
+    }
+
+    header h1 {
+        width: 100%; /* Título ocupa todo el ancho */
+        text-align: center; /* Centra el título en móvil */
+        margin-bottom: 10px; /* Espacio debajo del título */
+    }
+
+    .main-nav {
+        width: 100%; /* Nav ocupa todo el ancho */
+        justify-content: flex-end; /* Alinea el botón hamburguesa a la derecha */
+        position: relative; /* Necesario para posicionar el menú desplegable */
+    }
+
+    .nav-list {
+        /* Este es el menú que se oculta/muestra */
+        display: none; /* Oculto por defecto */
+        flex-direction: column; /* Apila los elementos verticalmente */
+        position: absolute;
+        top: 100%; /* Coloca el menú debajo del nav */
+        right: 0;
+        background-color: #0a4f6e; /* Fondo del menú desplegable */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        z-index: 999; /* Asegura que esté por encima de otros elementos */
+        padding: 10px 0;
+    }
+
+    /* Estado visible del menú (requiere JS para activarlo con una clase, ej: .nav-list.visible) */
+     .nav-list.visible {
+         display: flex;
+     }
+
+
+    .nav-list li {
+        margin: 0; /* Remover margen horizontal */
+        text-align: center; /* Centra los enlaces */
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* Separador entre elementos */
+    }
+
+    .nav-list li:last-child {
+        border-bottom: none; /* No separar el último elemento */
+    }
+
+    .nav-link {
+        display: block; /* Ocupa todo el ancho del li */
+        padding: 12px 15px; /* Padding más generoso */
+        border-bottom: none; /* Remover borde inferior */
+    }
+
+     .nav-link:hover {
+         background-color: #00796b; /* Color al pasar el ratón en móvil */
+         color: #fff;
+     }
+
+    .nav-toggle {
+        display: block; /* Mostrar el botón hamburguesa */
+    }
+
+    /* Ajustar el layout principal cuando el menú es vertical */
+    .container {
+        flex-direction: column; /* Apila lista y perfil */
+    }
+    .player-list-container {
+        flex: 0 0 auto; /* Quita el ancho fijo */
+        width: 100%; /* Ocupa todo el ancho */
+        margin-bottom: 20px;
+    }
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+     .paddle-info {
+        flex-direction: column; /* Apila las palas */
+        align-items: center;
+    }
+    .paddle-item {
+        flex-basis: 80%; /* Más ancho en pantallas pequeñas */
+        width: 80%;
+    }
+}
+
+/* --- Contenedor Principal y Layout (Mantener estilos existentes) --- */
 .container {
     display: flex;
     max-width: 1200px;
@@ -21,19 +199,19 @@ body {
     gap: 20px; /* Espacio entre lista y perfil */
 }
 
-/* --- Header y Footer --- */
-header, footer {
-    background-color: #0a4f6e; /* Azul oscuro padel */
-    color: #fff;
-    text-align: center;
-    padding: 1em 0;
-    margin-bottom: 20px;
+
+/* --- Footer --- */
+footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    background-color: #333;
+    color: #fff; /* Asegurar color blanco */
+    text-align: center; /* Asegurar texto centrado */
+    padding: 1em 0; /* Asegurar padding */
 }
-header h1 { font-size: 2em; }
-footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
 
 
-/* --- Lista de Jugadores --- */
+/* --- Lista de Jugadores (Mantener estilos existentes) --- */
 .player-list-container {
     flex: 0 0 250px; /* Ancho fijo para la lista */
     background-color: #fff;
@@ -85,7 +263,7 @@ footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
     transform: none;
 }
 
-/* --- Contenedor del Perfil --- */
+/* --- Contenedor del Perfil (Mantener estilos existentes) --- */
 .profile-container {
     flex-grow: 1; /* Ocupa el espacio restante */
     opacity: 0; /* Inicialmente oculto para transición */
@@ -115,12 +293,12 @@ footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
 }
 
 
-/* --- Tarjeta de Perfil Interna --- */
+/* --- Tarjeta de Perfil Interna (Mantener estilos existentes) --- */
 .profile-card {
     padding: 25px;
 }
 
-/* --- Cabecera del Perfil --- */
+/* --- Cabecera del Perfil (Mantener estilos existentes) --- */
 .profile-header {
     display: flex;
     align-items: center;
@@ -159,7 +337,7 @@ footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
     letter-spacing: 0.5px;
 }
 
-/* --- Secciones del Perfil --- */
+/* --- Secciones del Perfil (Mantener estilos existentes) --- */
 .profile-section {
     margin-bottom: 30px;
 }
@@ -172,7 +350,7 @@ footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
     display: inline-block;
 }
 
-/* --- Sección de Habilidades --- */
+/* --- Sección de Habilidades (Mantener estilos existentes) --- */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Columnas adaptables */
@@ -206,7 +384,7 @@ footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
     color: #0a4f6e;
 }
 
-/* --- Sección de Equipamiento (Palas) --- */
+/* --- Sección de Equipamiento (Palas) (Mantener estilos existentes) --- */
 .paddle-section h3 { color: #c2185b; border-bottom-color: #f8bbd0; } /* Rosa oscuro */
 
 .paddle-info {
@@ -252,7 +430,7 @@ footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
 }
 
 
-/* --- Estilos por Categoría (Aquí la magia visual!) --- */
+/* --- Estilos por Categoría (Mantener estilos existentes) --- */
 /* Básico */
 .category-badge { background-color: #777; } /* Default gris */
 .profile-card { border-top: 5px solid #777; }
@@ -299,40 +477,8 @@ footer { margin-top: 30px; font-size: 0.9em; background-color: #333; }
 .category-badge.category-otro,
 .category-badge.category-desconocido { background-color: #607d8b; }
 
-/* Animación Opcional para Primera Categoría */
-/* @keyframes pulse-border {
-  0% { border-color: #f44336; }
-  50% { border-color: #ffcdd2; }
-  100% { border-color: #f44336; }
-} */
 
-
-/* --- Responsividad --- */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Apila lista y perfil */
-    }
-    .player-list-container {
-        flex: 0 0 auto; /* Quita el ancho fijo */
-        width: 100%; /* Ocupa todo el ancho */
-        margin-bottom: 20px;
-    }
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
-    }
-     .paddle-info {
-        flex-direction: column; /* Apila las palas */
-        align-items: center;
-    }
-    .paddle-item {
-        flex-basis: 80%; /* Más ancho en pantallas pequeñas */
-        width: 80%;
-    }
-}
-
-
-/* estilos del modal */
+/* --- Estilos del Modal (Mantener estilos existentes) --- */
 .modal {
     display: none;
     position: fixed;
