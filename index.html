@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club de Padel Amigos</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <header>
+        <h1>Club de Padel - Perfiles de Jugadores</h1>
+    </header>
+
+    <main class="container">
+        <aside class="player-list-container">
+            <h2>Jugadores</h2>
+            <ul id="player-list">
+                <li class="loading">Cargando jugadores...</li>
+            </ul>
+        </aside>
+
+        <section id="player-profile" class="profile-container" style="display: none;">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img id="profile-photo" src="" alt="Foto del jugador" class="profile-photo">
+                    <div>
+                        <h2 id="profile-name"></h2>
+                        <span id="profile-category" class="category-badge"></span>
+                    </div>
+                </div>
+
+                <div class="profile-section skills-section">
+                    <h3>Habilidades</h3>
+                    <div id="profile-skills" class="skills-grid">
+                        </div>
+                </div>
+
+                <div class="profile-section paddle-section">
+                    <h3>Equipamiento</h3>
+                    <div class="paddle-info">
+                        <div class="paddle-item">
+                            <h4 id="paddle-name"></h4>
+                            <img id="paddle-photo" src="" alt="Foto de la pala" class="paddle-photo">
+                        </div>
+                        <div class="paddle-item special-paddle">
+                             <h4>Pala Especial</h4>
+                            <img id="special-paddle-photo" src="" alt="Foto de la pala especial" class="paddle-photo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="welcome-message" class="profile-container">
+             <p>Selecciona un jugador de la lista para ver su perfil.</p>
+         </section>
+
+    </main>
+
+    <footer>
+        <p>Sitio creado para los amigos padelistas</p>
+    </footer>
+
+    <script src="script.js"></script>
+    </body>
+</html>
