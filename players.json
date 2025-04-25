@@ -2,14 +2,14 @@
   {
     "id": 1,
     "name": "Carlos 'El Martillo' Pérez",
-    "photo": "images/carlos_perez.jpg",
+    "photo": "images/player1.jpg",
     "category": "Primera",
     "paddle": {
       "name": "Bullpadel Vertex 03",
-      "photo": "images/vertex03.jpg"
+      "photo": "images/pala1.jpg"
     },
     "specialPaddle": {
-      "photo": "images/carlos_special_pala.png"
+      "photo": "images/pala_especial1.jpg"
     },
     "skills": {
       "Saque": 9,
