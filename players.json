@@ -61,15 +61,15 @@
   },
   {
     "id": 4,
-    "name": "Invitado Misterioso",
+    "name": "Keno Liebre",
     "photo": "images/unknown_player.png",
     "category": "Otro",
     "paddle": {
        "name": "Desconocida",
-       "photo": "images/unknown_paddle.png"
+       "photo": "images/unknown_paddle.jpg"
     },
     "specialPaddle": {
-      "photo": "images/guest_special_pala.png"
+      "photo": "images/keno_special_pala.jpg"
     },
     "skills": {
        "Potencial": "?"
