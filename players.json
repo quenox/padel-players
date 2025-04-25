@@ -22,7 +22,7 @@
   },
   {
     "id": 2,
-    "name": "Ana 'La Muralla' Gómez",
+    "name": "Pato P",
     "photo": "images/unknown_player.jpg",
     "category": "Segunda",
     "paddle": {
@@ -30,7 +30,7 @@
       "photo": "images/unknown_paddle.jpg"
     },
     "specialPaddle": {
-      "photo": "images/ana_special_pala.png"
+      "photo": "images/pato_special_pala.jpg"
     },
     "skills": {
       "Saque": 7,
