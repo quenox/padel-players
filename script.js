@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+
+    const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.querySelector('.nav-list');
+
+    if (navToggle && navList) {
+        navToggle.addEventListener('click', () => {
+            navList.classList.toggle('visible');
+        });
+    }
+    
     const playerListElement = document.getElementById('player-list');
     const playerProfileElement = document.getElementById('player-profile');
     const welcomeMessageElement = document.getElementById('welcome-message');
