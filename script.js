@@ -72,29 +72,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayPlayerProfile(player) {
         // 1. Ocultar mensaje de bienvenida
         welcomeMessageElement.style.display = 'none';
-
+    
         // 2. Ocultar el perfil actual instantáneamente y remover la clase visible
-        // Esto asegura que la animación siempre comience desde el estado inicial (opacity: 0)
         playerProfileElement.classList.remove('visible');
         playerProfileElement.style.display = 'none'; // Lo ocultamos para que el llenado de datos no se vea
-
-
+    
         // 3. Actualizar todos los datos del perfil (hacer esto mientras está display: none es eficiente)
         profilePhoto.src = player.photo || 'images/default_player.png';
         profilePhoto.alt = `Foto de ${player.name}`;
         profileName.textContent = player.name;
-
+    
         // Actualizar y estilizar categoría
         profileCategory.textContent = player.category || 'Desconocido';
         const categoryClass = `category-${(player.category || 'desconocido').toLowerCase().replace(' ', '-')}`;
         profileCard.className = 'profile-card'; // Resetea clases excepto la base
-        profileCard.classList.add(categoryClass); // Añade la clase específica de la categoría
-        profileCategory.className = 'category-badge'; // Resetea clases de la insignia
-        profileCategory.classList.add(categoryClass); // Añade la clase a la insignia también
-
-
-        // Actualizar Habilidades (DINÁMICAMENTE)
-        profileSkillsContainer.innerHTML = ''; // Limpiar habilidades anteriores
+        profileCard.classList.add(categoryClass);
+        profileCategory.className = 'category-badge';
+        profileCategory.classList.add(categoryClass);
+    
+        // Actualizar habilidades
+        profileSkillsContainer.innerHTML = '';
         if (player.skills && typeof player.skills === 'object') {
             for (const skillName in player.skills) {
                 if (Object.hasOwnProperty.call(player.skills, skillName)) {
@@ -109,48 +106,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } else {
-             profileSkillsContainer.innerHTML = '<p>No hay habilidades registradas.</p>';
+            profileSkillsContainer.innerHTML = '<p>No hay habilidades registradas.</p>';
         }
-
-        // Actualizar Pala Normal
+    
+        // Actualizar pala normal
         if (player.paddle) {
             paddleName.textContent = player.paddle.name || 'Pala Principal';
             paddlePhoto.src = player.paddle.photo || 'images/default_paddle.png';
             paddlePhoto.alt = player.paddle.name ? `Pala ${player.paddle.name}` : 'Pala principal';
             paddleName.style.display = player.paddle.name ? 'block' : 'none';
         } else {
-             paddleName.textContent = '';
-             paddlePhoto.src = 'images/default_paddle.png';
-             paddlePhoto.alt = 'Pala no especificada';
-             paddleName.style.display = 'none';
+            paddleName.textContent = '';
+            paddlePhoto.src = 'images/default_paddle.png';
+            paddlePhoto.alt = 'Pala no especificada';
+            paddleName.style.display = 'none';
         }
-
-
-        // Actualizar Pala Especial
-          if (player.specialPaddle && player.specialPaddle.photo) {
-              specialPaddlePhoto.src = player.specialPaddle.photo;
-              specialPaddlePhoto.alt = `Pala especial de ${player.name}`;
-              specialPaddlePhoto.parentElement.style.display = 'block';
-          } else {
-               specialPaddlePhoto.parentElement.style.display = 'none';
-          }
-
-        // 4. Establecer el display a block para que el elemento ocupe espacio en el layout
-        // En este punto, el elemento es 'display: block', 'opacity: 0', 'transform: translateY(20px)'
+    
+        // Actualizar pala especial
+        if (player.specialPaddle && player.specialPaddle.photo) {
+            specialPaddlePhoto.src = player.specialPaddle.photo;
+            specialPaddlePhoto.alt = `Pala especial de ${player.name}`;
+            specialPaddlePhoto.parentElement.style.display = 'block';
+        } else {
+            specialPaddlePhoto.parentElement.style.display = 'none';
+        }
+    
+        // 4. Establecer display block para ocupar espacio en el layout
         playerProfileElement.style.display = 'block';
-
-        // 5. **FORZAR REFLOW:** Este es el paso clave. Le dice al navegador que
-        // recalcule el layout *ahora* que el display es 'block' y que aplique
-        // los estilos iniciales (opacity: 0, transform: translateY(20px)).
-        // Acceder a cualquier propiedad de offset o client lo fuerza.
+    
+        // 5. Forzar reflow
         void playerProfileElement.offsetHeight;
-
-
-        // 6. **ACTIVAR TRANSICIÓN:** Ahora añadimos la clase 'visible'.
-        // El navegador ve que opacity y transform deben cambiar a sus valores finales (1 y 0)
-        // y, como hay una transición definida, la anima suavemente.
-        playerProfileElement.classList.add('visible');
+    
+        // 6. Activar transición en el siguiente frame
+        requestAnimationFrame(() => {
+            playerProfileElement.classList.add('visible');
+        });
     }
+
 
     // --- 4. Resaltar jugador seleccionado en la lista ---
     function highlightSelectedPlayer(playerId) {
@@ -164,15 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-     // Opcional: Inicializar AOS si lo has añadido (solo si lo necesitas para *otros* elementos en la página que sí usan scroll)
-     // if (typeof AOS !== 'undefined') {
-     //    AOS.init({
-     //         duration: 800, // Duración de las animaciones
-     //         once: true // Animación solo una vez
-     //    });
-     // }
 
-
+    
 
     /* para el modal */
     // Referencias
