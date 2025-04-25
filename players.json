@@ -1,0 +1,78 @@
+[
+  {
+    "id": 1,
+    "name": "Carlos 'El Martillo' Pérez",
+    "photo": "images/carlos_perez.jpg",
+    "category": "Primera",
+    "paddle": {
+      "name": "Bullpadel Vertex 03",
+      "photo": "images/vertex03.jpg"
+    },
+    "specialPaddle": {
+      "photo": "images/carlos_special_pala.png"
+    },
+    "skills": {
+      "Saque": 9,
+      "Volea": 8,
+      "Bandeja": 9,
+      "Remate": 10,
+      "Defensa": 7,
+      "Físico": 8
+    }
+  },
+  {
+    "id": 2,
+    "name": "Ana 'La Muralla' Gómez",
+    "photo": "images/ana_gomez.jpg",
+    "category": "Segunda",
+    "paddle": {
+      "name": "Nox AT10 Luxury Genius Arena",
+      "photo": "images/nox_at10.jpg"
+    },
+    "specialPaddle": {
+      "photo": "images/ana_special_pala.png"
+    },
+    "skills": {
+      "Saque": 7,
+      "Volea": 8,
+      "Bandeja": 8,
+      "Defensa": 9,
+      "Paciencia": 10,
+      "Físico": 7
+    }
+  },
+  {
+    "id": 3,
+    "name": "Javier 'Relámpago' Solís",
+    "photo": "images/javier_solis.jpg",
+    "category": "Sexta",
+    "paddle": {
+      "photo": "images/pala_generica.jpg"
+    },
+    "specialPaddle": {
+      "photo": "images/javier_special_pala.png"
+    },
+    "skills": {
+      "Entusiasmo": 10,
+      "Saque": 4,
+      "Derecha": 5,
+      "Revés": 3
+    }
+  },
+  {
+    "id": 4,
+    "name": "Invitado Misterioso",
+    "photo": "images/unknown_player.png",
+    "category": "Otro",
+    "paddle": {
+       "name": "Desconocida",
+       "photo": "images/unknown_paddle.png"
+    },
+    "specialPaddle": {
+      "photo": "images/guest_special_pala.png"
+    },
+    "skills": {
+       "Potencial": "?"
+    }
+  }
+]
