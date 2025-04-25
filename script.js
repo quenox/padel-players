@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Referencias
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-img");
-    const specialPaddlePhoto = document.getElementById("special-paddle-photo");
     const closeBtn = document.querySelector(".close");
     
     // Abrir modal al hacer clic en la imagen
