@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navList = document.querySelector('.nav-list');
 
+    // Verificar que ambos elementos existen antes de añadir el event listener
     if (navToggle && navList) {
         navToggle.addEventListener('click', () => {
+            // Alterna la clase 'visible' en la lista de navegación
             navList.classList.toggle('visible');
         });
     }
