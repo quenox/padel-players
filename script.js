@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navList.classList.toggle('visible');
         });
     }
-    
+
     const playerListElement = document.getElementById('player-list');
     const playerProfileElement = document.getElementById('player-profile');
     const welcomeMessageElement = document.getElementById('welcome-message');
@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             populatePlayerList(playersData);
             // Opcional: Mostrar el primer jugador por defecto
             // if (playersData.length > 0) {
-            //     displayPlayerProfile(playersData[0]);
-            //     highlightSelectedPlayer(playersData[0].id);
+            //      displayPlayerProfile(playersData[0]);
+            //      highlightSelectedPlayer(playersData[0].id);
             // }
         })
         .catch(error => {
@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             listItem.textContent = player.name;
             listItem.dataset.playerId = player.id; // Guardar el ID para fácil acceso
             listItem.addEventListener('click', () => {
+                // Al hacer clic, mostramos el perfil y resaltamos el jugador
                 displayPlayerProfile(player);
                 highlightSelectedPlayer(player.id);
             });
@@ -67,20 +68,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. Mostrar el perfil del jugador seleccionado ---
+    // --- 3. Mostrar el perfil del jugador seleccionado CON ANIMACIÓN ---
     function displayPlayerProfile(player) {
-        // Ocultar mensaje de bienvenida y mostrar perfil
+        // 1. Ocultar mensaje de bienvenida
         welcomeMessageElement.style.display = 'none';
-        playerProfileElement.classList.add('visible'); // Añade clase para animación CSS
 
-        // Actualizar datos básicos
-        profilePhoto.src = player.photo || 'images/default_player.png'; // Imagen por defecto si no hay
+        // 2. Ocultar el perfil actual instantáneamente y remover la clase visible
+        // Esto asegura que la animación siempre comience desde el estado inicial (opacity: 0)
+        playerProfileElement.classList.remove('visible');
+        playerProfileElement.style.display = 'none'; // Lo ocultamos para que el llenado de datos no se vea
+
+
+        // 3. Actualizar todos los datos del perfil (hacer esto mientras está display: none es eficiente)
+        profilePhoto.src = player.photo || 'images/default_player.png';
         profilePhoto.alt = `Foto de ${player.name}`;
         profileName.textContent = player.name;
 
         // Actualizar y estilizar categoría
         profileCategory.textContent = player.category || 'Desconocido';
-        // Limpiar clases de categoría anteriores y añadir la nueva
         const categoryClass = `category-${(player.category || 'desconocido').toLowerCase().replace(' ', '-')}`;
         profileCard.className = 'profile-card'; // Resetea clases excepto la base
         profileCard.classList.add(categoryClass); // Añade la clase específica de la categoría
@@ -96,8 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const skillLevel = player.skills[skillName];
                     const skillElement = document.createElement('div');
                     skillElement.classList.add('skill-item');
-                    // Podrías añadir data-aos aquí si usas esa librería
-                    // skillElement.setAttribute('data-aos', 'fade-up');
                     skillElement.innerHTML = `
                         <span class="skill-name">${skillName}</span>
                         <span class="skill-level">${skillLevel}</span>
@@ -111,10 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Actualizar Pala Normal
         if (player.paddle) {
-            paddleName.textContent = player.paddle.name || 'Pala Principal'; // Nombre por defecto si no se especifica
-             paddlePhoto.src = player.paddle.photo || 'images/default_paddle.png'; // Imagen por defecto
-             paddlePhoto.alt = player.paddle.name ? `Pala ${player.paddle.name}` : 'Pala principal';
-             paddleName.style.display = player.paddle.name ? 'block' : 'none'; // Ocultar si no hay nombre
+            paddleName.textContent = player.paddle.name || 'Pala Principal';
+            paddlePhoto.src = player.paddle.photo || 'images/default_paddle.png';
+            paddlePhoto.alt = player.paddle.name ? `Pala ${player.paddle.name}` : 'Pala principal';
+            paddleName.style.display = player.paddle.name ? 'block' : 'none';
         } else {
              paddleName.textContent = '';
              paddlePhoto.src = 'images/default_paddle.png';
@@ -124,16 +127,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // Actualizar Pala Especial
-         if (player.specialPaddle && player.specialPaddle.photo) {
-             specialPaddlePhoto.src = player.specialPaddle.photo;
-             specialPaddlePhoto.alt = `Pala especial de ${player.name}`;
-             specialPaddlePhoto.parentElement.style.display = 'block'; // Mostrar contenedor
-         } else {
-              specialPaddlePhoto.parentElement.style.display = 'none'; // Ocultar si no hay pala especial
-         }
+          if (player.specialPaddle && player.specialPaddle.photo) {
+              specialPaddlePhoto.src = player.specialPaddle.photo;
+              specialPaddlePhoto.alt = `Pala especial de ${player.name}`;
+              specialPaddlePhoto.parentElement.style.display = 'block';
+          } else {
+               specialPaddlePhoto.parentElement.style.display = 'none';
+          }
 
-         // Opcional: Si usas AOS, refresca para detectar nuevos elementos
-         // if (typeof AOS !== 'undefined') { AOS.refresh(); }
+        // 4. Establecer el display a block para que el elemento ocupe espacio en el layout
+        // En este punto, el elemento es 'display: block', 'opacity: 0', 'transform: translateY(20px)'
+        playerProfileElement.style.display = 'block';
+
+        // 5. **FORZAR REFLOW:** Este es el paso clave. Le dice al navegador que
+        // recalcule el layout *ahora* que el display es 'block' y que aplique
+        // los estilos iniciales (opacity: 0, transform: translateY(20px)).
+        // Acceder a cualquier propiedad de offset o client lo fuerza.
+        void playerProfileElement.offsetHeight;
+
+
+        // 6. **ACTIVAR TRANSICIÓN:** Ahora añadimos la clase 'visible'.
+        // El navegador ve que opacity y transform deben cambiar a sus valores finales (1 y 0)
+        // y, como hay una transición definida, la anima suavemente.
+        playerProfileElement.classList.add('visible');
+
+        // Opcional: Si usaras AOS para otros elementos *dentro* del perfil
+        // que se cargan dinámicamente, aquí podrías refrescarlo.
+        // AOS.refresh(); // Descomentar si es necesario
     }
 
     // --- 4. Resaltar jugador seleccionado en la lista ---
@@ -148,11 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-     // Opcional: Inicializar AOS si lo has añadido
+     // Opcional: Inicializar AOS si lo has añadido (solo si lo necesitas para *otros* elementos en la página que sí usan scroll)
      // if (typeof AOS !== 'undefined') {
      //    AOS.init({
-     //        duration: 800, // Duración de las animaciones
-     //        once: true // Animación solo una vez
+     //         duration: 800, // Duración de las animaciones
+     //         once: true // Animación solo una vez
      //    });
      // }
 
@@ -163,25 +183,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-img");
     const closeBtn = document.querySelector(".close");
-    
-    // Abrir modal al hacer clic en la imagen
-    specialPaddlePhoto.addEventListener("click", () => {
-        modal.style.display = "block";
-        modalImg.src = specialPaddlePhoto.src;
-    });
-    
+
+    // Verificar si specialPaddlePhoto existe antes de añadir el listener
+    if (specialPaddlePhoto) {
+        // Abrir modal al hacer clic en la imagen
+        specialPaddlePhoto.addEventListener("click", () => {
+            // Solo abrir si la imagen tiene un src válido (no el placeholder por defecto)
+            if (specialPaddlePhoto.src && !specialPaddlePhoto.src.includes('default_paddle.png')) {
+                 modal.style.display = "block";
+                 modalImg.src = specialPaddlePhoto.src;
+                 modalImg.alt = specialPaddlePhoto.alt; // Copiar alt text
+            }
+        });
+    }
+
     // Cerrar modal al hacer clic en la "X"
-    closeBtn.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-    
-    // Cerrar modal al hacer clic fuera de la imagen
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
             modal.style.display = "none";
-        }
-    });
+        });
+    }
+
+    // Cerrar modal al hacer clic fuera de la imagen (en el fondo oscuro del modal)
+    if (modal) {
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    }
 
 
-    
 }); // Fin de DOMContentLoaded
