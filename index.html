@@ -1,168 +1,102 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Club de Padel Amigos - Tailwind</title>
-    <!-- 1. Include Tailwind CSS CDN -->
+    <title>Club de Padel Amigos - Mejorado</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome (optional, but used for hamburger icon) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- 2. Remove Old CSS Link (deleted) -->
-    <!-- <link rel="stylesheet" href="style.css"> -->
 
-    <!-- 6. Keep Modal CSS -->
-    <style>
-        /* --- Estilos del Modal --- */
-        .modal {
-            display: none; /* Initially hidden */
-            position: fixed;
-            z-index: 1000;
-            padding-top: 60px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.8);
-        }
-        .modal-content {
-            display: block;
-            margin: auto;
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 10px; /* Tailwind: rounded-lg */
-            box-shadow: 0 0 15px rgba(255,255,255,0.5); /* Tailwind: shadow-lg shadow-white/50 */
-        }
-        .close {
-            position: absolute;
-            top: 20px; /* Tailwind: top-5 */
-            right: 40px; /* Tailwind: right-10 */
-            color: white; /* Tailwind: text-white */
-            font-size: 40px; /* Tailwind: text-4xl */
-            font-weight: bold; /* Tailwind: font-bold */
-            cursor: pointer; /* Tailwind: cursor-pointer */
-            line-height: 1; /* Added for better positioning */
-        }
-        /* Add hover effect */
-        .close:hover {
-            color: #ccc; /* Tailwind: hover:text-gray-300 */
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@formkit/auto-animate@0.8.2/index.global.min.js"></script>
+
+    </head>
 <body class="font-sans leading-relaxed bg-gray-100 text-gray-800">
 
     <header class="bg-[#0a4f6e] text-white p-4 mb-5 shadow-md">
         <div class="header-content max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center">
-            <!-- Title -->
             <h1 class="text-3xl font-bold px-2.5 w-full text-center mb-2.5 md:w-auto md:text-left md:mb-0">Perfiles de Jugadores</h1>
-
-            <!-- Navigation -->
             <nav class="main-nav w-full flex items-center justify-end relative md:w-auto md:justify-start md:static">
-                <!-- Nav List (Mobile: Hidden, Absolute Dropdown | Desktop: Visible, Inline) -->
                 <ul id="nav-list" class="nav-list list-none m-0 p-0 hidden flex-col absolute top-full right-0 bg-[#0a4f6e] w-full shadow-lg z-50 py-2.5 md:flex md:flex-row md:static md:w-auto md:bg-transparent md:shadow-none md:p-0 md:items-center">
-                    <li class="m-0 text-center border-b border-white/10 last:border-b-0 md:ml-5 md:text-left md:border-b-0">
-                        <a href="#" class="nav-link block py-3 px-3.5 text-white no-underline text-lg transition-colors duration-300 ease-in-out hover:bg-[#00796b] md:inline-block md:py-1 md:px-0 md:text-base md:border-b-2 md:border-transparent md:hover:bg-transparent md:hover:text-[#00bcd4] md:hover:border-[#00bcd4]">Jugadores</a>
-                    </li>
-                    <li class="m-0 text-center border-b border-white/10 last:border-b-0 md:ml-5 md:text-left md:border-b-0">
-                        <a href="#" class="nav-link block py-3 px-3.5 text-white no-underline text-lg transition-colors duration-300 ease-in-out hover:bg-[#00796b] md:inline-block md:py-1 md:px-0 md:text-base md:border-b-2 md:border-transparent md:hover:bg-transparent md:hover:text-[#00bcd4] md:hover:border-[#00bcd4]">Galería</a>
-                    </li>
-                    <li class="m-0 text-center border-b border-white/10 last:border-b-0 md:ml-5 md:text-left md:border-b-0">
-                        <a href="#" class="nav-link block py-3 px-3.5 text-white no-underline text-lg transition-colors duration-300 ease-in-out hover:bg-[#00796b] md:inline-block md:py-1 md:px-0 md:text-base md:border-b-2 md:border-transparent md:hover:bg-transparent md:hover:text-[#00bcd4] md:hover:border-[#00bcd4]">Otro</a>
-                    </li>
+                    <li class="m-0 text-center border-b border-white/10 last:border-b-0 md:ml-5 md:text-left md:border-b-0"><a href="#" class="nav-link block py-3 px-3.5 text-white no-underline text-lg transition-colors duration-300 ease-in-out hover:bg-[#00796b] md:inline-block md:py-1 md:px-0 md:text-base md:border-b-2 md:border-transparent md:hover:bg-transparent md:hover:text-[#00bcd4] md:hover:border-[#00bcd4]">Jugadores</a></li>
+                    <li class="m-0 text-center border-b border-white/10 last:border-b-0 md:ml-5 md:text-left md:border-b-0"><a href="#" class="nav-link block py-3 px-3.5 text-white no-underline text-lg transition-colors duration-300 ease-in-out hover:bg-[#00796b] md:inline-block md:py-1 md:px-0 md:text-base md:border-b-2 md:border-transparent md:hover:bg-transparent md:hover:text-[#00bcd4] md:hover:border-[#00bcd4]">Galería</a></li>
+                    <li class="m-0 text-center border-b border-white/10 last:border-b-0 md:ml-5 md:text-left md:border-b-0"><a href="#" class="nav-link block py-3 px-3.5 text-white no-underline text-lg transition-colors duration-300 ease-in-out hover:bg-[#00796b] md:inline-block md:py-1 md:px-0 md:text-base md:border-b-2 md:border-transparent md:hover:bg-transparent md:hover:text-[#00bcd4] md:hover:border-[#00bcd4]">Otro</a></li>
                 </ul>
-                <!-- Hamburger Toggle Button (Visible only on Mobile) -->
-                <button id="nav-toggle" class="nav-toggle block bg-transparent border-none text-white text-2xl cursor-pointer px-2.5 md:hidden" aria-label="Abrir menú de navegación">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <button id="nav-toggle" class="nav-toggle block bg-transparent border-none text-white text-2xl cursor-pointer px-2.5 md:hidden" aria-label="Abrir menú de navegación"><i class="fas fa-bars"></i></button>
             </nav>
         </div>
     </header>
 
-    <main class="container flex flex-col md:flex-row max-w-6xl mx-auto my-5 p-4 gap-5">
+    <main id="main-container" class="container flex flex-col md:flex-row max-w-6xl mx-auto my-5 p-4 gap-5">
 
-        <!-- Player List Sidebar -->
-        <aside class="player-list-container w-full mb-5 md:flex-none md:w-[250px] md:mb-0 bg-white p-4 rounded-lg shadow-md h-fit">
-            <h2 class="text-xl font-semibold text-center mb-4 text-[#0a4f6e]">Jugadores</h2>
-            <ul id="player-list" class="list-none p-0 m-0">
-                <!-- Base style for list items (JS will add active/loading states) -->
-                 <li class="py-2 px-3 mb-2 rounded cursor-pointer transition duration-200 ease-in-out border border-gray-200 font-medium text-gray-700 hover:bg-[#e0f7fa] hover:translate-x-1">Cargando jugadores...</li>
-                <!-- Example Active state (Applied by JS):
-                     <li class="py-2 px-3 mb-2 rounded cursor-pointer transition duration-200 ease-in-out font-bold bg-[#00bcd4] text-white border-[#008ba3]">Jugador Activo</li>
-                 -->
-                 <!-- Example Loading state (Applied by JS):
-                     <li class="py-2 px-3 mb-2 rounded border border-gray-200 italic text-gray-400 cursor-default">Cargando...</li>
-                 -->
-            </ul>
+        <aside class="card bg-base-100 shadow-xl w-full md:w-[250px] md:flex-none h-fit">
+            <div class="card-body p-4">
+                <h2 class="card-title justify-center text-[#0a4f6e]">Jugadores</h2>
+                <ul id="player-list" class="menu p-0 [&_li>*]:rounded-md">
+                    <li><a>Cargando jugadores...</a></li>
+                </ul>
+            </div>
         </aside>
 
-        <!-- Player Profile Section (Initially hidden, transitions in) -->
-        <section id="player-profile" class="profile-container flex-grow bg-white rounded-lg shadow-lg overflow-hidden hidden opacity-0 translate-y-5 transition-all duration-500 ease-out">
-            <!-- Profile Card -->
-            <!-- Base classes: "profile-card p-6". JS adds category border like: "border-t-[5px] border-orange-500" -->
-            <div class="profile-card p-6">
-                <!-- Profile Header -->
-                <div class="profile-header flex flex-col md:flex-row items-center text-center md:text-left gap-5 mb-7 pb-5 border-b border-gray-200">
-                    <img id="profile-photo" src="images/default_player.png" alt="Foto del jugador" class="profile-photo w-24 h-24 rounded-full object-cover border-[3px] border-gray-300 transition-transform duration-300 ease-in-out hover:scale-110 shadow-md cursor-pointer">
-                    <div class="flex-grow">
-                        <h2 id="profile-name" class="mb-1 text-3xl font-bold text-[#0a4f6e]">Nombre Jugador</h2>
-                        <!-- Base classes: "category-badge inline-block py-1 px-3 rounded-full text-xs font-bold text-white uppercase tracking-wider". JS adds bg color like "bg-orange-500" -->
-                        <span id="profile-category" class="category-badge inline-block py-1 px-3 rounded-full text-xs font-bold text-white uppercase tracking-wider bg-gray-500">Categoría</span>
-                    </div>
-                </div>
-
-                <!-- Skills Section -->
-                <div class="profile-section mb-7 skills-section">
-                    <h3 class="text-xl font-semibold mb-4 pb-1 inline-block border-b-2 text-[#00796b] border-[#b2dfdb]">Habilidades</h3>
-                    <!-- Grid for skills -->
-                    <div id="profile-skills" class="skills-grid grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4">
-                        <!-- Skill items added by JS -->
-                        <!-- Example Skill Item structure:
-                        <div class="skill-item bg-gray-100 p-3 rounded-md text-center border border-gray-200 transition duration-300 hover:bg-gray-200 hover:shadow-sm">
-                            <span class="skill-name font-semibold block mb-1 text-sm text-gray-700">Revés</span>
-                            <span class="skill-level text-lg font-bold text-[#0a4f6e]">8</span>
+        <section id="player-profile" class="card bg-base-100 shadow-xl flex-grow hidden">
+            <div id="profile-card" class="card-body p-6">
+                <div class="profile-header flex flex-col md:flex-row items-center text-center md:text-left gap-5 mb-7 pb-5 border-b border-base-200">
+                    <div class="avatar">
+                        <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
+                            <img id="profile-photo" src="images/default_player.png" alt="Foto del jugador" />
                         </div>
-                         -->
+                    </div>
+                    <div class="flex-grow">
+                        <h2 id="profile-name" class="card-title text-3xl font-bold text-[#0a4f6e]">Nombre Jugador</h2>
+                        <span id="profile-category" class="badge badge-lg text-white font-bold uppercase tracking-wider">Categoría</span>
                     </div>
                 </div>
 
-                <!-- Equipment Section -->
-                <div class="profile-section paddle-section mb-0"> <!-- Remove mb if last section -->
+                <div class="profile-section mb-7">
+                    <h3 class="text-xl font-semibold mb-4 pb-1 inline-block border-b-2 text-[#00796b] border-[#b2dfdb]">Habilidades</h3>
+                    <div id="profile-skills" class="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4">
+                        </div>
+                </div>
+
+                <div>
                     <h3 class="text-xl font-semibold mb-4 pb-1 inline-block border-b-2 text-[#c2185b] border-[#f8bbd0]">Equipamiento</h3>
-                    <div class="paddle-info flex flex-wrap gap-5 justify-around items-start">
-                        <!-- Main Paddle -->
+                    <div class="flex flex-wrap gap-5 justify-around items-start">
                         <div class="paddle-item text-center w-[80%] md:w-[45%] min-w-[150px] p-5 rounded-2xl border border-yellow-300 bg-yellow-100 shadow-md hover:shadow-lg transition-shadow duration-300">
                             <h4 id="paddle-name" class="mb-3 text-gray-700 font-semibold text-lg min-h-[2.4em]">Pala Principal</h4>
                             <img id="paddle-photo" src="images/default_paddle.png" alt="Foto de la pala" class="paddle-photo max-w-[140px] h-auto mx-auto rounded-lg shadow hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer">
                         </div>
-                        <!-- Special Paddle -->
                         <div class="paddle-item special-paddle text-center w-[80%] md:w-[45%] min-w-[150px] p-5 rounded-2xl border border-sky-300 bg-sky-100 shadow-md hover:shadow-lg transition-shadow duration-300">
-                             <h4 class="mb-3 text-gray-700 font-semibold text-lg min-h-[2.4em]">Pala Especial</h4>
-                            <img id="special-paddle-photo" src="images/default_paddle.png" alt="Foto de la pala especial" class="paddle-photo max-w-[140px] h-auto mx-auto rounded-lg shadow hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer"> <!-- Added cursor-pointer -->
+                            <h4 class="mb-3 text-gray-700 font-semibold text-lg min-h-[2.4em]">Pala Especial</h4>
+                            <img id="special-paddle-photo" src="images/default_paddle.png" alt="Foto de la pala especial" class="paddle-photo max-w-[140px] h-auto mx-auto rounded-lg shadow hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Welcome Message (Initially visible, hidden when profile shows) -->
-        <section id="welcome-message" class="profile-container flex-grow p-10 text-center text-lg text-gray-600 bg-white rounded-lg shadow-md">
-            <p>Selecciona un jugador de la lista para ver su perfil.</p>
+        <section id="welcome-message" class="card bg-base-100 shadow-md flex-grow p-10 text-center">
+            <div class="m-auto">
+                <p class="text-lg text-gray-600">Selecciona un jugador de la lista para ver su perfil.</p>
+            </div>
         </section>
-
     </main>
 
     <footer class="mt-8 text-sm bg-gray-800 text-white text-center py-4">
         <p>Sitio creado por kenoliebre</p>
     </footer>
 
-    <!-- Modal Structure -->
-    <div id="image-modal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modal-img" alt="Imagen ampliada de la pala">
-    </div>
+    <dialog id="image-modal" class="modal">
+        <div class="modal-box p-2 bg-transparent max-w-5xl shadow-none">
+            <img id="modal-img" src="" alt="Imagen ampliada" class="rounded-lg">
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
 
-    <!-- Include the modified JavaScript -->
+
     <script src="script.js"></script>
 
 </body>
