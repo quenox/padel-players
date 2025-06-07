@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('nav-toggle');
     const navList = document.getElementById('nav-list');
 
-    // --- Mobile Menu Toggle (sin cambios) ---
     if (navToggle && navList) {
         navToggle.addEventListener('click', () => {
             navList.classList.toggle('hidden');
@@ -11,17 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 1. Inicializar AutoAnimate ---
-    const mainContainer = document.getElementById('main-container');
+    // Se eliminó toda la inicialización de AutoAnimate
     const playerListElement = document.getElementById('player-list');
-    if (mainContainer) AutoAnimate(mainContainer);
-    if (playerListElement) AutoAnimate(playerListElement);
-
     const playerProfileElement = document.getElementById('player-profile');
     const welcomeMessageElement = document.getElementById('welcome-message');
     let playersData = [];
 
-    // --- Profile Elements Cache (sin cambios) ---
     const profilePhoto = document.getElementById('profile-photo');
     const profileName = document.getElementById('profile-name');
     const profileCategory = document.getElementById('profile-category');
@@ -31,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const specialPaddlePhoto = document.getElementById('special-paddle-photo');
     const profileCard = document.getElementById('profile-card');
 
-    // --- Category Styling Map (sin cambios) ---
     const categoryStyles = {
         'primera': { border: 'border-t-[7px] border-red-600', bg: 'badge-error' },
         'segunda': { border: 'border-t-[5px] border-purple-600', bg: 'badge-secondary' },
@@ -44,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const defaultCategory = categoryStyles['desconocido'];
 
-    // --- Load Player Data (sin cambios) ---
     fetch('players.json')
         .then(response => response.ok ? response.json() : Promise.reject(response.status))
         .then(data => {
@@ -56,9 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
             playerListElement.innerHTML = '<li><a class="text-red-600">Error al cargar jugadores.</a></li>';
         });
 
-    // --- 2. Populate Player List (FUNCIÓN CORREGIDA) ---
     function populatePlayerList(players) {
-        playerListElement.innerHTML = ''; // Limpiar "Cargando..."
+        playerListElement.innerHTML = ''; 
 
         if (!players || players.length === 0) {
             playerListElement.innerHTML = '<li><a>No hay jugadores registrados.</a></li>';
@@ -66,28 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         players.forEach(player => {
-            const listItem = document.createElement('li'); // Crear el <li>
-            listItem.dataset.playerId = player.id; // Asignar el ID al <li>
-
-            const link = document.createElement('a'); // Crear el <a>
-            link.textContent = player.name; // Poner el nombre en el <a>
-            link.href = "#"; // Añadir un href para asegurar que se comporte como link
-
-            listItem.appendChild(link); // Poner el <a> dentro del <li>
-
-            // Añadir el listener al <li>, que es el elemento de menú completo
+            const listItem = document.createElement('li');
+            listItem.dataset.playerId = player.id;
+            const link = document.createElement('a');
+            link.textContent = player.name;
+            link.href = "#";
+            listItem.appendChild(link);
             listItem.addEventListener('click', (e) => {
-                e.preventDefault(); // ¡IMPORTANTE! Evita que el link "#" mueva la página
+                e.preventDefault();
                 displayPlayerProfile(player);
                 highlightSelectedPlayer(player.id);
             });
-
-            playerListElement.appendChild(listItem); // Añadir el <li> completo a la lista <ul>
+            playerListElement.appendChild(listItem);
         });
     }
 
-
-    // --- 3. Display Player Profile (sin cambios respecto a la versión anterior mejorada) ---
+    // Se restaura la lógica simple de mostrar/ocultar, sin animaciones.
     function displayPlayerProfile(player) {
         welcomeMessageElement.classList.add('hidden');
         playerProfileElement.classList.remove('hidden');
@@ -140,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // --- 4. Highlight Selected Player (sin cambios) ---
     function highlightSelectedPlayer(playerId) {
         const listItems = playerListElement.querySelectorAll('li');
         listItems.forEach(item => {
@@ -152,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 5. Image Modal Logic (sin cambios) ---
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-img");
 
@@ -168,4 +151,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if(img) img.addEventListener("click", () => openModal(img));
     });
 
-}); // End of DOMContentLoaded
+});
