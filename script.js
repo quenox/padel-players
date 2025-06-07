@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 1. Inicializar AutoAnimate ---
-    // ¡Esto animará automáticamente cualquier cambio en estos contenedores!
     const mainContainer = document.getElementById('main-container');
     const playerListElement = document.getElementById('player-list');
     if (mainContainer) AutoAnimate(mainContainer);
@@ -30,10 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const paddleName = document.getElementById('paddle-name');
     const paddlePhoto = document.getElementById('paddle-photo');
     const specialPaddlePhoto = document.getElementById('special-paddle-photo');
-    // Actualizamos el selector para el nuevo ID de profile-card
-    const profileCard = document.getElementById('profile-card'); 
+    const profileCard = document.getElementById('profile-card');
 
-    // --- Category Styling Map (Ahora con clases de badge de DaisyUI) ---
+    // --- Category Styling Map (sin cambios) ---
     const categoryStyles = {
         'primera': { border: 'border-t-[7px] border-red-600', bg: 'badge-error' },
         'segunda': { border: 'border-t-[5px] border-purple-600', bg: 'badge-secondary' },
@@ -58,37 +56,42 @@ document.addEventListener('DOMContentLoaded', () => {
             playerListElement.innerHTML = '<li><a class="text-red-600">Error al cargar jugadores.</a></li>';
         });
 
-    // --- Populate Player List (adaptado a "menu" de DaisyUI) ---
+    // --- 2. Populate Player List (FUNCIÓN CORREGIDA) ---
     function populatePlayerList(players) {
-        playerListElement.innerHTML = ''; // Clear 'Loading...'
-        if (players.length === 0) {
+        playerListElement.innerHTML = ''; // Limpiar "Cargando..."
+
+        if (!players || players.length === 0) {
             playerListElement.innerHTML = '<li><a>No hay jugadores registrados.</a></li>';
             return;
         }
-        players.forEach(player => {
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
-            link.textContent = player.name;
-            listItem.appendChild(link);
-            
-            listItem.dataset.playerId = player.id;
 
-            listItem.addEventListener('click', () => {
+        players.forEach(player => {
+            const listItem = document.createElement('li'); // Crear el <li>
+            listItem.dataset.playerId = player.id; // Asignar el ID al <li>
+
+            const link = document.createElement('a'); // Crear el <a>
+            link.textContent = player.name; // Poner el nombre en el <a>
+            link.href = "#"; // Añadir un href para asegurar que se comporte como link
+
+            listItem.appendChild(link); // Poner el <a> dentro del <li>
+
+            // Añadir el listener al <li>, que es el elemento de menú completo
+            listItem.addEventListener('click', (e) => {
+                e.preventDefault(); // ¡IMPORTANTE! Evita que el link "#" mueva la página
                 displayPlayerProfile(player);
                 highlightSelectedPlayer(player.id);
             });
-            playerListElement.appendChild(listItem);
+
+            playerListElement.appendChild(listItem); // Añadir el <li> completo a la lista <ul>
         });
     }
 
-    // --- Display Player Profile (MUY SIMPLIFICADO) ---
+
+    // --- 3. Display Player Profile (sin cambios respecto a la versión anterior mejorada) ---
     function displayPlayerProfile(player) {
-        // 1. Ocultar mensaje de bienvenida y mostrar perfil.
-        // AutoAnimate se encarga de la transición visual.
         welcomeMessageElement.classList.add('hidden');
         playerProfileElement.classList.remove('hidden');
 
-        // 2. Actualizar contenido del perfil
         profilePhoto.src = player.photo || 'images/default_player.png';
         profilePhoto.alt = `Foto de ${player.name}`;
         profileName.textContent = player.name;
@@ -97,15 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const styles = categoryStyles[categoryKey] || defaultCategory;
 
         profileCategory.textContent = player.category || 'Desconocido';
-        // Reset badge classes, usa la clase base de DaisyUI y la de color
         profileCategory.className = 'badge badge-lg text-white font-bold uppercase tracking-wider';
         profileCategory.classList.add(styles.bg);
         
-        // Reset card border
-        profileCard.className = 'card-body p-6'; // Clases base
+        profileCard.className = 'card-body p-6';
         styles.border.split(' ').forEach(cls => profileCard.classList.add(cls));
 
-        // Update skills (sin cambios en la lógica interna)
         profileSkillsContainer.innerHTML = '';
         if (player.skills && Object.keys(player.skills).length > 0) {
             Object.entries(player.skills).forEach(([skillName, skillLevel]) => {
@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
             profileSkillsContainer.innerHTML = '<p class="text-gray-500 italic">No hay habilidades registradas.</p>';
         }
 
-        // Update equipment (sin cambios en la lógica interna)
         const paddleItem = paddlePhoto.closest('.paddle-item');
         if (player.paddle) {
             paddleName.textContent = player.paddle.name || 'Pala Principal';
@@ -141,11 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // --- Highlight Selected Player (adaptado para "menu" de DaisyUI) ---
+    // --- 4. Highlight Selected Player (sin cambios) ---
     function highlightSelectedPlayer(playerId) {
         const listItems = playerListElement.querySelectorAll('li');
         listItems.forEach(item => {
-            // La clase "active" de DaisyUI se encarga de todo el estilo.
             if (item.dataset.playerId == playerId) {
                 item.classList.add('active');
             } else {
@@ -154,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Image Modal Logic (adaptado para DaisyUI) ---
+    // --- 5. Image Modal Logic (sin cambios) ---
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-img");
 
@@ -162,11 +160,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (imgElement && imgElement.src && !imgElement.src.includes('default') && modal) {
              modalImg.src = imgElement.src;
              modalImg.alt = imgElement.alt;
-             modal.showModal(); // API de DaisyUI para abrir el modal
+             modal.showModal();
         }
     }
-
-    // Listeners para abrir el modal (sin cambios, pero ahora llaman a showModal())
+    
     [profilePhoto, paddlePhoto, specialPaddlePhoto].forEach(img => {
         if(img) img.addEventListener("click", () => openModal(img));
     });
